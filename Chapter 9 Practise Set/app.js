@@ -39,6 +39,13 @@ appPractiseSet.get("/contact-us",(req, res, next) => {
     <input type="submit" value="Submit"/>
     </form>
     `);
+    next();
+});
+
+//Now adding one more middleware to handle /contact-us page POST request.
+appPractiseSet.post("/contact-us",(req, res, next) => {
+  console.log('Inside the contact-us page post middleware', req.url, req.method);
+  res.send('<h1>Thanks for contacting us.</h1>');
 });
 
 //Now we will start and listen server using express object.
