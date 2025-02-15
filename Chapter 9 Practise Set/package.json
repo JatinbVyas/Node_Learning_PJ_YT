@@ -7,5 +7,9 @@
   },
   "author": "Jatin Vyas",
   "license": "ISC",
-  "description": "This is chapter 9 practise set."
+  "description": "This is chapter 9 practise set.",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
 }
