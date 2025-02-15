@@ -1,0 +1,11 @@
+{
+  "name": "chp9_practise_set",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jatin Vyas",
+  "license": "ISC",
+  "description": "This is chapter 9 practise set."
+}
