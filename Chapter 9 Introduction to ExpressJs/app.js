@@ -16,14 +16,25 @@ const appExpressIntro = express();
   "/" means it match everytime, this is like * matches everything, when used with use method.
 
   can not send response after once you send response in one of the middleware.
+
+  Now we can handles the routes using specific methods like get or post.
+  Below we used get for path "/", so now this is not wildcard match, this will not execute everytime.
+  If someone called for directly "/submit-details" then only that middleware will execute because
+  "/" path middleware is now written with get method.
+
+  As we seen earlier when path is mentiond with use method it means that will not check for exact request with method.
 */
-appExpressIntro.use("/", (req, res, next) => {
+appExpressIntro.get("/", (req, res, next) => {
   console.log('This is first middleware. ', req.url, req.method);
   //res.send('Welcome to ExpressJs');
   next();
 });
 
-appExpressIntro.use("/submit-details", (req, res, next) => {
+/**
+ * Here we replaced use with post, means now only post request with URL "/submit-details" comes then and then
+ * only this middleware will execute.
+ */
+appExpressIntro.post("/submit-details", (req, res, next) => {
   console.log('This is second middleware. ', req.url, req.method);
   res.send('Welcome to ExpressJs Introduction chapter.'); // This is for sending response to client.
 });
