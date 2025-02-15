@@ -1,3 +1,6 @@
+//Core module
+const path = require('path');
+
 //External module
 const express = require('express');
 
@@ -5,21 +8,12 @@ const express = require('express');
 const houseRouter = express.Router();
 
 houseRouter.get("/add-home",(req, res, next) => {
-  res.send(`
-    <h1> Register your home </h1>
-    <form action="add-home" method="POST">
-    <input type="text" id="houseName" name="houseName" placeholder="Enter name of your house"/>
-    <input type="submit"/>
-    </form>
-    `);
+  res.sendFile(path.join(__dirname,"../","views","addhome.html"));
 });
 
 houseRouter.post("/add-home",(req, res, next) => {
   console.log(req.body);
-  res.send(`
-    <h1> Home registered successfully. </h1>
-    <a href="/">Go to home</a>
-    `);
+  res.sendFile(path.join(__dirname,"../","views","homeAdded.html"));
 });
 
 module.exports = houseRouter;
