@@ -1,4 +1,9 @@
+//External module
 const express = require('express');
+
+//Internal module
+const userRouter = require('./routes/userRouter');
+const houseRouter = require('./routes/hosrRouter');
 
 const appAirbnb = express();
 
@@ -8,13 +13,8 @@ appAirbnb.use((req, res, next) => {
   next();
 });
 
-appAirbnb.get("/",(req, res, next) => {
-  res.send(`
-    <h1> Welcome to airbnb </h1>
-    <a href="/add-home">Add Home</a>
-    `)
-  next();
-});
+//Below sysntax use to call router that is created for sepration of code.
+appAirbnb.use(userRouter);
 
 /**
  * In earlier chapter we seen body-parser for parsing request and adding to req.body.
@@ -23,22 +23,10 @@ appAirbnb.get("/",(req, res, next) => {
  */
 appAirbnb.use(express.urlencoded());
 
-appAirbnb.get("/add-home",(req, res, next) => {
-  res.send(`
-    <h1> Register your home </h1>
-    <form action="add-home" method="POST">
-    <input type="text" id="houseName" name="houseName" placeholder="Enter name of your house"/>
-    <input type="submit"/>
-    </form>
-    `);
-});
+appAirbnb.use(houseRouter);
 
-appAirbnb.post("/add-home",(req, res, next) => {
-  console.log(req.body);
-  res.send(`
-    <h1> Home registered successfully. </h1>
-    <a href="/">Go to home</a>
-    `);
+appAirbnb.use((req, res, next) => {
+  res.status(404).send("<h1> 404 Page not found. </h1>");
 });
 
 //Now start and listen server.
