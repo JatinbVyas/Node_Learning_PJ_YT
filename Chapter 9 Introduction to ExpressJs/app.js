@@ -1,6 +1,3 @@
-// Core module
-const http = require('http');
-
 //External module
 const express = require('express');
 
@@ -26,10 +23,11 @@ appExpressIntro.use((req, res, next) => {
   res.send('Welcome to ExpressJs Introduction chapter.'); // This is for sending response to client.
 });
 
-const server = http.createServer(appExpressIntro);
-
 const port = 3000;
 
-server.listen(port, () => {
+/** Now we removed create server line and directly appExpressIntro object is start listen to server.
+ * So internally this is creating server and then start listing.
+ */
+appExpressIntro.listen(port, () => {
   console.log(`Server running on port http://localhost:${port}`);
 });
