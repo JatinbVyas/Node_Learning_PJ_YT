@@ -1,7 +1,6 @@
 {
-  "name": "introduction-to-expressjs",
+  "name": "chp10_express_deepdive",
   "version": "1.0.0",
-  "description": "This is test project for error and debug",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +8,9 @@
   },
   "author": "Jatin Vyas",
   "license": "ISC",
+  "description": "This is chapter 9 practise set.",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "express": "^4.21.2",
     "nodemon": "^3.1.9"
   }
