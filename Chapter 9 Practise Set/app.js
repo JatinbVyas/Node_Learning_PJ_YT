@@ -17,9 +17,28 @@ appPractiseSet.use((req, res, next) => {
 });
 
 //Adding third middleware as request to send response.
-appPractiseSet.use((req, res, next) => {
-  console.log('Inside the Third Dummy middleware.', req.url, req.method);
-  res.send('<h1>Welcome to Practise Set.</h1>');
+// appPractiseSet.use((req, res, next) => {
+//   console.log('Inside the Third Dummy middleware.', req.url, req.method);
+//   res.send('<h1>Welcome to Practise Set.</h1>');
+// });
+
+//Now adding one more middleware to handle home page request.
+appPractiseSet.get("/",(req, res, next) => {
+  console.log('Inside the home page middleware', req.url, req.method);
+  res.send('<h1>Welcome to Home page.</h1>');
+  next();
+});
+
+//Now adding one more middleware to handle /contact-us page request for get.
+appPractiseSet.get("/contact-us",(req, res, next) => {
+  console.log('Inside the contact us get middleware', req.url, req.method);
+  res.send(`<h1>Welcome !!!</h1>
+    <br><form action="/contact-us" method="POST">
+    <input type="text" id="personName" name="personName" placeholder="Enter your name"/>
+    <input type="email" id="personEmail" name="personEmail" placeholder="Enter your Email"/>
+    <input type="submit" value="Submit"/>
+    </form>
+    `);
 });
 
 //Now we will start and listen server using express object.
