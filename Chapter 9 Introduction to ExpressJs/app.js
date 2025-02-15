@@ -1,10 +1,16 @@
 // Core module
 const http = require('http');
 
+//External module
+const express = require('express');
+
 // Internal module
 const requestHandler = require('./fileSquence');
 
-const server = http.createServer(requestHandler);
+//Execute expressJs
+const appExpressIntro = express();
+
+const server = http.createServer(appExpressIntro);
 
 const port = 3000;
 
