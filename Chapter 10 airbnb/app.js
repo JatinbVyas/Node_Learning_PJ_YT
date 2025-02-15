@@ -7,6 +7,7 @@ const express = require('express');
 //Internal module
 const userRouter = require('./routes/userRouter');
 const houseRouter = require('./routes/hosrRouter');
+const rootDir = require('./utils/pathUtil');
 
 const appAirbnb = express();
 
@@ -29,7 +30,7 @@ appAirbnb.use(express.urlencoded());
 appAirbnb.use(houseRouter);
 
 appAirbnb.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname,"views","404NotFound.html"));;
+  res.status(404).sendFile(path.join(rootDir,"views","404NotFound.html"));;
 });
 
 //Now start and listen server.
