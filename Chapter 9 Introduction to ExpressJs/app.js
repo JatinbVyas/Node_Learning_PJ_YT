@@ -23,6 +23,7 @@ appExpressIntro.use((req, res, next) => {
 
 appExpressIntro.use((req, res, next) => {
   console.log('This is second middleware. ', req.url, req.method);
+  res.send('Welcome to ExpressJs Introduction chapter.'); // This is for sending response to client.
 });
 
 const server = http.createServer(appExpressIntro);
