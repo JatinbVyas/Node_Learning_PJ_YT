@@ -1,0 +1,11 @@
+{
+  "name": "chapter-10-airbnb",
+  "version": "1.0.0",
+  "description": "This is furthermore deepdive of expressJs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jatin Vyas",
+  "license": "ISC"
+}
