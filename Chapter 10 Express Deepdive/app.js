@@ -1,5 +1,6 @@
 //import external module for express.
 const express = require('express');
+const bodyParser = require('body-parser');
 
 //now execute first express and get object from it.
 const appPractiseSet = express();
@@ -15,12 +16,6 @@ appPractiseSet.use((req, res, next) => {
   console.log('Inside the Second Dummy middleware.', req.url, req.method);
   next();
 });
-
-//Adding third middleware as request to send response.
-// appPractiseSet.use((req, res, next) => {
-//   console.log('Inside the Third Dummy middleware.', req.url, req.method);
-//   res.send('<h1>Welcome to Practise Set.</h1>');
-// });
 
 //Now adding one more middleware to handle home page request.
 appPractiseSet.get("/",(req, res, next) => {
@@ -42,9 +37,25 @@ appPractiseSet.get("/contact-us",(req, res, next) => {
     next();
 });
 
+//Now adding one more middleware to handle /contact-us page POST request before parsing body
+appPractiseSet.post("/contact-us",(req, res, next) => {
+  console.log('Inside the contact-us page post middleware before body parser.', req.url, req.method, req.body);
+  next();
+});
+
+//Now parsing body data using below middleware and use of body-parser package.
+/**
+ * With use of the body-parser package and with below syntax we parse the body request.
+ * And automatocally we can get body data in req.body variable after partsing body request
+ * using below middleware.
+ * For use of the first we need to install boday-parser packeage using npm install boday-parser --save
+ * for parsing need to write below middleware.
+ */
+appPractiseSet.use(bodyParser.urlencoded());
+
 //Now adding one more middleware to handle /contact-us page POST request.
 appPractiseSet.post("/contact-us",(req, res, next) => {
-  console.log('Inside the contact-us page post middleware', req.url, req.method);
+  console.log('Inside the contact-us page post middleware.', req.url, req.method, req.body);
   res.send('<h1>Thanks for contacting us.</h1>');
 });
 
