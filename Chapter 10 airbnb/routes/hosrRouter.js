@@ -11,7 +11,7 @@ const rootDir = require('../utils/pathUtil');
 const houseRouter = express.Router();
 
 houseRouter.get("/add-home",(req, res, next) => {
-  res.sendFile(path.join(__dirname,"../","views","addhome.html"));
+  res.sendFile(path.join(rootDir,"views","addhome.html"));
 });
 
 houseRouter.post("/add-home",(req, res, next) => {
