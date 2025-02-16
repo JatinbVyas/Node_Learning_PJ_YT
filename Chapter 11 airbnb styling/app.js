@@ -29,6 +29,12 @@ appAirbnb.use(express.urlencoded());
 
 appAirbnb.use(houseRouter);
 
+/**
+ * Below express.static used in middleware to make file public, so that can be used or can be access at client side.
+ *  You just need to create public folder and place files inside that folder and add below middleware.
+ */
+appAirbnb.use(express.static(path.join(rootDir,"public")));
+
 appAirbnb.use((req, res, next) => {
   res.status(404).sendFile(path.join(rootDir,"views","404NotFound.html"));;
 });
