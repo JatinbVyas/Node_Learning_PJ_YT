@@ -45,7 +45,7 @@ appAirbnb.use("/host",houseRouter);
 appAirbnb.use(express.static(path.join(rootDir,"public")));
 
 appAirbnb.use((req, res, next) => {
-  res.status(404).sendFile(path.join(rootDir,"views","404NotFound.html"));;
+  res.status(404).render('404NotFound',{pageTitle:"Page not found."});;
 });
 
 //Now start and listen server.
