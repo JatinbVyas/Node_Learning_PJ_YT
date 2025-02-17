@@ -6,7 +6,8 @@ const express = require('express');
 
 //Internal module
 const userRouter = require('./routes/userRouter');
-const houseRouter = require('./routes/hosrRouter');
+//Below is destructure the houseRouter because in that file multiple things are exported.
+const {houseRouter} = require('./routes/hosrRouter');
 const rootDir = require('./utils/pathUtil');
 
 const appAirbnb = express();

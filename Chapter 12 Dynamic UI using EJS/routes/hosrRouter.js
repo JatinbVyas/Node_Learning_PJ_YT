@@ -14,9 +14,17 @@ houseRouter.get("/add-home",(req, res, next) => {
   res.sendFile(path.join(rootDir,"views","addhome.html"));
 });
 
+const registeredHomes = [];
+
 houseRouter.post("/add-home",(req, res, next) => {
   console.log(req.body);
+  registeredHomes.push({houseName: req.body.houseName});
   res.sendFile(path.join(rootDir,"views","homeAdded.html"));
 });
 
-module.exports = houseRouter;
+/**
+ * Below is another syntax for module exports.
+ * With this we can multiple things can be exports.
+ */
+exports.houseRouter = houseRouter;
+exports.registeredHomes = registeredHomes;
