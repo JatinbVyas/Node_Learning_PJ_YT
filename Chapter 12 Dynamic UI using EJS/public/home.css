@@ -796,3 +796,5 @@ video {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
+
+.bg-gray-100 { background-color: #e5e7eb; }

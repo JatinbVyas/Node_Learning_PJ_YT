@@ -12,6 +12,14 @@ const rootDir = require('./utils/pathUtil');
 
 const appAirbnb = express();
 
+/**
+ * After installing ejs, for use of the EJS below two things we need to set.
+ * using this set method, we define that we are using EJS template engine
+ * and our view pages are in views folder
+ * */
+appAirbnb.set('view engine', 'ejs');
+appAirbnb.set('views', 'views');
+
 //Creating middleware
 appAirbnb.use((req, res, next) => {
   console.log(req.url, req.method);
