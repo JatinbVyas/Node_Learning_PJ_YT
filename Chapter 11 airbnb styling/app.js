@@ -27,7 +27,7 @@ appAirbnb.use(userRouter);
  */
 appAirbnb.use(express.urlencoded());
 
-appAirbnb.use(houseRouter);
+appAirbnb.use("/host",houseRouter);
 
 /**
  * Below express.static used in middleware to make file public, so that can be used or can be access at client side.

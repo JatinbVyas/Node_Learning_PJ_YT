@@ -7,11 +7,28 @@
   <link rel="stylesheet" href="home.css" />
 </head>
 <body>
-  <header>
-    <h1> Welcome to airbnb </h1>
+  <header class="bg-red-500 text-white p-4 shadow-md">
+    <nav class="container mx-auto flex justify-between items-center">
+      <ul class="flex space-x-4">
+        <li>
+          <a
+            href="/"
+            class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
+            >Go to Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="/host/add-home"
+            class="hover:bg-red-400 py-2 px-4 rounded transition duration-300"
+            >Add Home</a
+          >
+        </li>
+      </ul>
+    </nav>
   </header>
-  <main>
-    <a href="/add-home">Add Home</a>
+  <main class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 max-w-xl">
+    <h1 class="text-3xl text-red-500 font-bold text-center mb-6"> Welcome to airbnb </h1>
   </main>
 </body>
 </html>
