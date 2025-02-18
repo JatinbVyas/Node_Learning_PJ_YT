@@ -3,7 +3,7 @@
 const HomeClass = require('../models/homeModel');
 
 exports.getAddhome = (req, res, next) => {
-  res.render('addHome',{pageTitle:"Add your home", currentPage:"addHome"});
+  res.render('host/addHome',{pageTitle:"Add your home", currentPage:"addHome"});
 };
 
 exports.postAddhome = (req, res, next) => {
@@ -22,7 +22,7 @@ exports.postAddhome = (req, res, next) => {
 
   home.saveHome();
 
-  res.render('homeAdded',{pageTitle:"home added succesfully",currentPage:"homeAdded"});
+  res.render('host/homeAdded',{pageTitle:"home added succesfully",currentPage:"homeAdded"});
 };
 
 exports.getHomes = (req, res, next) => {
@@ -32,7 +32,7 @@ exports.getHomes = (req, res, next) => {
    * we can proceed further.
    */
   HomeClass.fetchAll((registeredHomes)=> {
-    res.render('home',{registeredHomes: registeredHomes, pageTitle: "airbnbHome",currentPage:"home"});
+    res.render('store/home-list',{registeredHomes: registeredHomes, pageTitle: "airbnbHome",currentPage:"home-list"});
   });
   
 };
