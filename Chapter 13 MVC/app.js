@@ -9,6 +9,7 @@ const userRouter = require('./routes/userRouter');
 //Below is destructure the houseRouter because in that file multiple things are exported.
 const {houseRouter} = require('./routes/hosrRouter');
 const rootDir = require('./utils/pathUtil');
+const { NotFoundPage } = require('./controllers/404NoutFound');
 
 const appAirbnb = express();
 
@@ -44,9 +45,7 @@ appAirbnb.use("/host",houseRouter);
  */
 appAirbnb.use(express.static(path.join(rootDir,"public")));
 
-appAirbnb.use((req, res, next) => {
-  res.status(404).render('404NotFound',{pageTitle:"Page not found."});;
-});
+appAirbnb.use(NotFoundPage);
 
 //Now start and listen server.
 const PORT = 3000;
