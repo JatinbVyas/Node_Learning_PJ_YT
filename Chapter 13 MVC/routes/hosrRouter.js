@@ -11,7 +11,7 @@ const rootDir = require('../utils/pathUtil');
 const houseRouter = express.Router();
 
 houseRouter.get("/add-home",(req, res, next) => {
-  res.render('addHome',{pageTitle:"Add your home"});
+  res.render('addHome',{pageTitle:"Add your home", currentPage:"addHome"});
 });
 
 const registeredHomes = [];
@@ -19,7 +19,7 @@ const registeredHomes = [];
 houseRouter.post("/add-home",(req, res, next) => {
   console.log(req.body);
   registeredHomes.push(req.body);
-  res.render('homeAdded',{pageTitle:"home added succesfully"});
+  res.render('homeAdded',{pageTitle:"home added succesfully",currentPage:"homeAdded"});
 });
 
 /**
