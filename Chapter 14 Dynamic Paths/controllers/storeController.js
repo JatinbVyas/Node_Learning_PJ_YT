@@ -32,7 +32,13 @@ exports.getFavourite = (req, res, next) => {
 
 exports.getHomesDetails = (req, res, next) => {
   const homeId= req.params.homeId;
-  console.log('Currently At home details page for homeid ::', homeId);
-  res.render('store/home-detail',{pageTitle: "Home Details",currentPage:"home-list"});
-  
+  HomeClass.findHomeByid(homeId, homesFoundById => {
+    if(!homesFoundById){
+      console.log('Sorry! Your requested home is not found.');
+      res.redirect("/store/home-list");
+    }
+    else{
+    res.render('store/home-detail',{homeData: homesFoundById, pageTitle: "Home Details",currentPage:"home-list"});
+    }
+  });
 };
