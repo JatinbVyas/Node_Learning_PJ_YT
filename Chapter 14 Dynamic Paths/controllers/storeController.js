@@ -29,3 +29,10 @@ exports.getFavourite = (req, res, next) => {
   });
   
 };
+
+exports.getHomesDetails = (req, res, next) => {
+  const homeId= req.params.homeId;
+  console.log('Currently At home details page for homeid ::', homeId);
+  res.render('store/home-detail',{pageTitle: "Home Details",currentPage:"home-list"});
+  
+};

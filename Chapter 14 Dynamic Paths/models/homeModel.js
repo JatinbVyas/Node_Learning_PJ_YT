@@ -3,12 +3,11 @@ const fs = require('fs');
 const path = require('path');
 //local module
 const rootDir = require('../utils/pathUtil');
-const { json } = require('stream/consumers');
-const { error } = require('console');
 
 module.exports = class HomeClass {
 
   constructor(houseName, price, location, rating, photoUrl){
+    this.id = Math.random().toString();
     this.houseName = houseName;
     this.price = price;
     this.location = location;
