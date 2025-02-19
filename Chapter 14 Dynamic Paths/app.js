@@ -27,15 +27,17 @@ appAirbnb.use((req, res, next) => {
   next();
 });
 
-//Below sysntax use to call router that is created for sepration of code.
-appAirbnb.use(storeRouter);
-
 /**
  * In earlier chapter we seen body-parser for parsing request and adding to req.body.
  * here is the another way without adding body-parser package is express itself.
  * using below syntax express will parse the body request data for any request.
  */
 appAirbnb.use(express.urlencoded());
+
+//Below sysntax use to call router that is created for sepration of code.
+appAirbnb.use(storeRouter);
+
+
 
 appAirbnb.use("/host",houseRouter);
 

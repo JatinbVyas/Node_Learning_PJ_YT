@@ -30,6 +30,11 @@ exports.getFavourite = (req, res, next) => {
   
 };
 
+exports.postAddToFavourities = (req, res, next) => {
+  console.log('you are in post favourite list', req.body, req.url);
+   res.redirect('/store/favourite-list');
+ };
+
 exports.getHomesDetails = (req, res, next) => {
   const homeId= req.params.homeId;
   HomeClass.findHomeByid(homeId, homesFoundById => {

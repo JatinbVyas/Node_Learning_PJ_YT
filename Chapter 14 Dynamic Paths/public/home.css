@@ -777,6 +777,11 @@ video {
   background-color: #15f58143;
 }
 
+.bg-green-300 {
+  --tw-bg-opacity: 1;
+  background-color: #15f58112;
+}
+
 .bg-pink-500 {
   --tw-bg-opacity: 1;
   background-color: #f515ccf1;

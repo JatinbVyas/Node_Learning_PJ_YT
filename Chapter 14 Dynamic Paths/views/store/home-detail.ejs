@@ -7,7 +7,7 @@
     <h3 class="text-3xl text-red-500 font-bold text-center mb-6">You are at Home Details page. </h3>
     <div class="flex flex-wrap justify-center gap-6">
       <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 w-full max-w-sm">
-          <img src="<%= homeData.photoURL %>" alt="<%= homeData.houseName %>" class="w-full h-48 object-cover">
+          <img src="<%= homeData.photoUrl %>" alt="<%= homeData.houseName %>" class="w-full h-48 object-cover">
           <div class="p-4">
             <h3 class="text-xl font-semibold text-gray-800 mb-2"><%= homeData.houseName %></h3>
             <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt mr-2"></i><%= homeData.location %></p>
@@ -20,8 +20,7 @@
                 <span class="text-gray-700"><%= homeData.rating %></span>
               </div>
             </div>
-            <a class="bg-pink-500 p-2" href="/homes/<%= homeData.id %>">Details</a>
-            <button class="bg-green-500 p-2">Book!</button>
+            <%- include('../partials/favourite') %>
           </div>
         </div>
     </div>
