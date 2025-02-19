@@ -1,5 +1,6 @@
 
 //Local module
+const FavouriteClass = require('../models/favourtieModel');
 const HomeClass = require('../models/homeModel');
 
 exports.Index = (req, res, next) => {
@@ -24,15 +25,24 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getFavourite = (req, res, next) => {
- HomeClass.fetchAll((registeredHomes)=> {
-    res.render('store/favourite-list',{registeredHomes: registeredHomes, pageTitle: "Favourite Homes",currentPage:"favourite-list"});
+  FavouriteClass.getFavourites((favouriteHomeIds)=>{
+    HomeClass.fetchAll((registeredHomes)=> {
+      const favouriteHomes = registeredHomes.filter(home => favouriteHomeIds.includes(home.id));
+      res.render('store/favourite-list',{favouriteHomes: favouriteHomes, pageTitle: "Favourite Homes",currentPage:"favourite-list"});
+    });
   });
+ 
   
 };
 
 exports.postAddToFavourities = (req, res, next) => {
   console.log('you are in post favourite list', req.body, req.url);
-   res.redirect('/store/favourite-list');
+  FavouriteClass.addToFavourite(req.body.homeId, error => {
+    if(error){
+      console.log('Error while add to favourite:: ', error, req.body);
+    }
+    res.redirect('/store/favourite-list');
+  });
  };
 
 exports.getHomesDetails = (req, res, next) => {
