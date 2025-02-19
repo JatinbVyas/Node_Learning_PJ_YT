@@ -1,14 +1,1 @@
-[
-  {
-    "houseName": "Maan Mandir",
-    "price": "456",
-    "location": "Mahuva",
-    "rating": "5"
-  },
-  {
-    "houseName": "Premkunj",
-    "price": "456",
-    "location": "Mahuva",
-    "rating": "5"
-  }
-]
+[{"houseName":"Maan Mandir","price":"456","location":"Mahuva","rating":"5"},{"houseName":"Premkunj","price":"456","location":"Mahuva","rating":"5"},{"houseName":"Maan Villa","price":"567","location":"Mumbai","rating":"4.5"}]

@@ -5,7 +5,7 @@ const path = require('path');
 const express = require('express');
 
 //Internal module
-const userRouter = require('./routes/userRouter');
+const storeRouter = require('./routes/storeRouter');
 //Below is destructure the houseRouter because in that file multiple things are exported.
 const {houseRouter} = require('./routes/hosrRouter');
 const rootDir = require('./utils/pathUtil');
@@ -28,7 +28,7 @@ appAirbnb.use((req, res, next) => {
 });
 
 //Below sysntax use to call router that is created for sepration of code.
-appAirbnb.use(userRouter);
+appAirbnb.use(storeRouter);
 
 /**
  * In earlier chapter we seen body-parser for parsing request and adding to req.body.
