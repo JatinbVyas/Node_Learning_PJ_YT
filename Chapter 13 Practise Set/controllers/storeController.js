@@ -2,12 +2,14 @@
 //Local module
 const HomeClass = require('../models/homeModel');
 
+exports.Index = (req, res, next) => {
+ HomeClass.fetchAll((registeredHomes)=> {
+res.render('store/index',{registeredHomes: registeredHomes, pageTitle: "airbnbHome",currentPage:"index"});
+  });
+  
+};
+
 exports.getHomes = (req, res, next) => {
-  /**
-   * fetchAll is returning using callback so res.render comes under function becase once read operation
-   * is complete and value get returns it will recevied in variable , here it is registeredHomes and then
-   * we can proceed further.
-   */
   HomeClass.fetchAll((registeredHomes)=> {
     res.render('store/home-list',{registeredHomes: registeredHomes, pageTitle: "airbnbHome",currentPage:"home-list"});
   });
@@ -15,13 +17,15 @@ exports.getHomes = (req, res, next) => {
 };
 
 exports.getBookings = (req, res, next) => {
-  /**
-   * fetchAll is returning using callback so res.render comes under function becase once read operation
-   * is complete and value get returns it will recevied in variable , here it is registeredHomes and then
-   * we can proceed further.
-   */
   HomeClass.fetchAll((registeredHomes)=> {
     res.render('store/bookings',{registeredHomes: registeredHomes, pageTitle: "airbnbHome",currentPage:"bookings"});
+  });
+  
+};
+
+exports.getFavourite = (req, res, next) => {
+ HomeClass.fetchAll((registeredHomes)=> {
+    res.render('store/favourite-list',{registeredHomes: registeredHomes, pageTitle: "Favourite Homes",currentPage:"favourite-list"});
   });
   
 };

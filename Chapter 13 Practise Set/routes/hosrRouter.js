@@ -11,6 +11,8 @@ houseRouter.get("/add-home", homesController.getAddhome);
 
 houseRouter.post("/add-home",homesController.postAddhome);
 
+houseRouter.get("/host-home-list",homesController.getHostHomes);
+
 /**
  * Below is another syntax for module exports.
  * With this we can multiple things can be exports.

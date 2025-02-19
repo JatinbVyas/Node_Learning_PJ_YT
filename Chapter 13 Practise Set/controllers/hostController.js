@@ -4,7 +4,7 @@ const HomeClass = require('../models/homeModel');
 
 exports.getAddhome = (req, res, next) => {
   console.log('current request is: ',req.url);
-  res.render('./host/addHome',{pageTitle:"Add your home", currentPage:"addHome"});
+  res.render('./host/addHome',{pageTitle:"Host Add your home", currentPage:"addHome"});
 };
 
 exports.postAddhome = (req, res, next) => {
@@ -24,4 +24,11 @@ exports.postAddhome = (req, res, next) => {
   home.saveHome();
 
   res.render('./host/homeAdded',{pageTitle:"home added succesfully",currentPage:"homeAdded"});
+};
+
+exports.getHostHomes = (req, res, next) => {
+  HomeClass.fetchAll((registeredHomes)=> {
+    res.render('./host/host-home-list',{registeredHomes: registeredHomes, pageTitle: "Host home list",currentPage:"host-home-list"});
+  });
+  
 };
