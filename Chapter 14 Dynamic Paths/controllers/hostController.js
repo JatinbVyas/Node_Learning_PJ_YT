@@ -4,7 +4,27 @@ const HomeClass = require('../models/homeModel');
 
 exports.getAddhome = (req, res, next) => {
   console.log('current request is: ',req.url);
-  res.render('./host/addHome',{pageTitle:"Host Add your home", currentPage:"addHome"});
+  res.render('./host/edit-home',{pageTitle:"Host Add your home", currentPage:"addHome", editing: false});
+};
+
+exports.getEditHomes = (req, res, next) => {
+   const homeId= req.params.homeId;
+  const editing= req.query.editing === 'true';
+  console.log('Value of variable is : ',homeId, editing);
+
+  HomeClass.findHomeByid(homeId, homeFound=> {
+    if(!homeFound){
+      return res.redirect("/host/host-home-list");
+    }
+    else
+    {
+      console.log('Value of variable is : ',homeId, editing, homeFound);
+      res.render('./host/edit-home',{homeFound: homeFound, pageTitle:"Edit your home", currentPage:"host-home-list", editing: editing});
+    }
+  });
+
+
+  
 };
 
 exports.postAddhome = (req, res, next) => {
@@ -24,6 +44,27 @@ exports.postAddhome = (req, res, next) => {
   home.saveHome();
 
   res.render('./host/homeAdded',{pageTitle:"home added succesfully",currentPage:"homeAdded"});
+};
+
+exports.postEditHome = (req, res, next) => {
+  console.log(req.body.photoUrl);
+  
+  /**
+   * Now instead of array we will use of new class
+   */
+  const home = new HomeClass(
+    req.body.houseName,
+    req.body.price,
+    req.body.location,
+    req.body.rating,
+    req.body.photoUrl
+  );
+
+  home.id = req.body.id;
+
+  home.saveHome();
+
+  res.redirect("/host/host-home-list");
 };
 
 exports.getHostHomes = (req, res, next) => {
