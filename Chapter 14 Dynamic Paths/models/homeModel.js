@@ -3,13 +3,14 @@ const fs = require('fs');
 const path = require('path');
 //local module
 const rootDir = require('../utils/pathUtil');
+const { error } = require('console');
+const FavouriteClass = require('./favourtieModel');
 
 const homeDataPath = path.join(rootDir,'Data','home.json');
 
 module.exports = class HomeClass {
 
   constructor(houseName, price, location, rating, photoUrl){
-    this.id = Math.random().toString();
     this.houseName = houseName;
     this.price = price;
     this.location = location;
@@ -20,7 +21,21 @@ module.exports = class HomeClass {
   //Define function to save/push home object.
   saveHome () {
     HomeClass.fetchAll((registeredHomes) => {
-      registeredHomes.push(this);
+      if(this.id){ //This is edit home case
+        //map method is of Array method this will itrate one by one value
+        registeredHomes =  registeredHomes.map(home => {
+          if(home.id === this.id){
+            console.log('this is photo url comes::',this.photoUrl);
+            return this;
+          }
+          return home;
+        })
+      }
+      else{ //This is add home case
+        this.id = Math.random().toString();
+        registeredHomes.push(this);
+      }
+      
       fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), error => {
         console.log('File writing successfull', error);
       })
@@ -52,5 +67,21 @@ module.exports = class HomeClass {
       callback(homeById);
     });
   }
+
+  static deleteHomeByid(homeId, callback)
+  {
+    this.fetchAll(listofHomes => {
+      listofHomes = listofHomes.filter(home => home.id !== homeId);
+      fs.writeFile(homeDataPath, JSON.stringify(listofHomes), error => {
+        if(error){
+          console.log('There is an error while delete home', error);
+        }
+        else{
+          FavouriteClass.removeFavouriteHomeByid(homeId,callback);
+        }
+      });
+    });
+  }
+
 
 }
