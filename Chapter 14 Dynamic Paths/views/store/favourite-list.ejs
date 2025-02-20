@@ -21,7 +21,10 @@
                 <span class="text-gray-700"><%= home.rating %></span>
               </div>
             </div>
-            <button class="bg-green-500 p-2 hover:bg-red-600">Remove Favourite</button>
+            <form id="removefavouriteform" action="/store/remove-favourite/<%= home.id%>" method="POST">
+              <button class="bg-green-500 p-2 hover:bg-red-600">Remove Favourite</button>
+            </form>
+            
           </div>
         </div>
       <% }) %>

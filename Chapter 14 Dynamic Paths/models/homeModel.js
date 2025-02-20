@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 //local module
 const rootDir = require('../utils/pathUtil');
+const { error } = require('console');
+const FavouriteClass = require('./favourtieModel');
 
 const homeDataPath = path.join(rootDir,'Data','home.json');
 
@@ -65,5 +67,21 @@ module.exports = class HomeClass {
       callback(homeById);
     });
   }
+
+  static deleteHomeByid(homeId, callback)
+  {
+    this.fetchAll(listofHomes => {
+      listofHomes = listofHomes.filter(home => home.id !== homeId);
+      fs.writeFile(homeDataPath, JSON.stringify(listofHomes), error => {
+        if(error){
+          console.log('There is an error while delete home', error);
+        }
+        else{
+          FavouriteClass.removeFavouriteHomeByid(homeId,callback);
+        }
+      });
+    });
+  }
+
 
 }
