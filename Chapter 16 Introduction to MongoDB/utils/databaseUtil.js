@@ -5,19 +5,31 @@ const mongoClient = mongoDb.MongoClient;
 const mongo_URL =
   "mongodb+srv://jatinmongo:jatinmongo321$@jackmongo.x0ybk.mongodb.net/?retryWrites=true&w=majority&appName=JackMongo";
 
+let _db;
 const mongoConnect = (callback) => {
   mongoClient
     .connect(mongo_URL)
     .then((client) => {
       console.log(client);
-      callback(client);
+      _db = client.db('airbnbhomes');
+      callback();
     })
     .catch((error) => {
       console.log("Error while conneciting mongoDB: ", error);
     });
 };
 
-module.exports = mongoConnect;
+const getdb = () => {
+  if(!_db){
+    throw new Error('Mongo is not connected.');
+  }
+  else{
+    return _db;
+  }
+}
+
+exports.mongoConnect = mongoConnect;
+exports.getdb = getdb;
 
 // const mysql = require('mysql2');
 

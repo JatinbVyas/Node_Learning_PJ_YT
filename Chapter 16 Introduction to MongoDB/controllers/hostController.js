@@ -52,7 +52,9 @@ exports.postAddhome = (req, res, next) => {
     req.body.description
   );
 
-  home.saveHome();
+  home.saveHome().then(() => {
+    console.log('Home saved successfully.');
+  });
 
   res.render('./host/homeAdded',{pageTitle:"home added succesfully",currentPage:"homeAdded"});
 };
