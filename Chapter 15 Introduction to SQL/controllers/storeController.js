@@ -57,7 +57,8 @@ exports.postAddToFavourities = (req, res, next) => {
 
 exports.getHomesDetails = (req, res, next) => {
   const homeId= req.params.homeId;
-  HomeClass.findHomeByid(homeId, homesFoundById => {
+  HomeClass.findHomeByid(homeId).then(([homesFound]) => {
+    const homesFoundById = homesFound[0];
     if(!homesFoundById){
       console.log('Sorry! Your requested home is not found.');
       res.redirect("/store/home-list");

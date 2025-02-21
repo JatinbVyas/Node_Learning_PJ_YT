@@ -36,6 +36,10 @@
         value="<%= editing ? homeFound.photoUrl : '' %>"
         placeholder="Enter your House Photo URL"
         class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"/>
+        <textarea
+        name="description"
+        placeholder="Enter your House Description"
+        class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"><%= editing ? homeFound.description : '' %></textarea>
       <input type="submit" value="<%= editing ? "Update" : "Submit" %>" class="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300" />
     </form>
   </main>
