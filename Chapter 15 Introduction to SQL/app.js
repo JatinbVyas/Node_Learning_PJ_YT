@@ -11,6 +11,21 @@ const {houseRouter} = require('./routes/hosrRouter');
 const rootDir = require('./utils/pathUtil');
 const { NotFoundPage } = require('./controllers/404NoutFound');
 
+const homeDB = require('./utils/databaseUtil');
+
+/**
+ * Above first homeDB variable is defined to call database pool from databaseUtil file.
+ * Next is below query written to get all rows from particular table or query.
+ * Here ([rows, Fields]) is format of destructure the array, and we are printing only rows in while our final data is capture.
+ * in fields table description is defined or we can say column description is defined.
+ * instead of destructure we can use any variable directily e.g result and print it to get both rows and fields.
+ */
+homeDB.execute("SELECT * FROM homes").then(([rows, Fields]) => {
+  console.log('DB result:: ', rows);
+}).catch(error => {
+  console.log('There is an error while db query.', error);
+});
+
 const appAirbnb = express();
 
 /**
