@@ -10,6 +10,7 @@ const storeRouter = require('./routes/storeRouter');
 const {houseRouter} = require('./routes/hosrRouter');
 const rootDir = require('./utils/pathUtil');
 const { NotFoundPage } = require('./controllers/404NoutFound');
+const mongoConnect = require('./utils/databaseUtil');
 
 const appAirbnb = express();
 
@@ -49,8 +50,11 @@ appAirbnb.use(express.static(path.join(rootDir,"public")));
 
 appAirbnb.use(NotFoundPage);
 
+//Connect mongo db first and in return success callback start server. 
+mongoConnect(client => {
 //Now start and listen server.
 const PORT = 3000;
 appAirbnb.listen(PORT, () => {
   console.log(`Server is running on address http://localhost:${PORT}`);
+});
 });
