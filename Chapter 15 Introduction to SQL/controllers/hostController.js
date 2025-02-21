@@ -68,7 +68,7 @@ exports.postEditHome = (req, res, next) => {
 };
 
 exports.getHostHomes = (req, res, next) => {
-  HomeClass.fetchAll((registeredHomes)=> {
+  HomeClass.fetchAll().then(([registeredHomes,fields]) => {
     res.render('./host/host-home-list',{registeredHomes: registeredHomes, pageTitle: "Host home list",currentPage:"host-home-list"});
   });
   
