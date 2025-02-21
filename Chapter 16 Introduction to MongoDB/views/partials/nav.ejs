@@ -1,0 +1,42 @@
+<header class="bg-red-500 text-white p-4 shadow-md">
+  <nav class="container mx-auto flex justify-between items-center">
+    <ul class="flex space-x-4">
+      <li>
+        <a
+          href="/"
+          class="<%= currentPage === 'index' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >airbnb</a>
+      </li>
+      <li>
+        <a
+          href="/store/home-list"
+          class="<%= currentPage === 'home-list' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Home</a>
+      </li>
+      <li>
+        <a
+          href="/store/favourite-list"
+          class="<%= currentPage === 'favourite-list' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Favourites</a>
+      </li>
+      <li>
+        <a
+          href="/store/bookings"
+          class="<%= currentPage === 'bookings' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Bookings</a>
+      </li>
+      <li>
+        <a
+          href="/host/host-home-list"
+          class="<%= currentPage === 'host-home-list' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Host Homes</a>
+      </li>
+      <li>
+        <a
+          href="/host/add-Home"
+          class="<%= currentPage === 'addHome' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Add Home</a>
+      </li>
+    </ul>
+  </nav>
+</header>
