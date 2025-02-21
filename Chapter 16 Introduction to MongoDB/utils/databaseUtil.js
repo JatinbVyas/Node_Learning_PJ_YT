@@ -10,7 +10,6 @@ const mongoConnect = (callback) => {
   mongoClient
     .connect(mongo_URL)
     .then((client) => {
-      console.log(client);
       _db = client.db('airbnbhomes');
       callback();
     })

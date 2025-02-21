@@ -20,8 +20,7 @@ exports.getEditHomes = (req, res, next) => {
    * After .then function applied to we received data in rows and fields in array format
    * here by id specific one record is written and due to this areay[0] is written.
    */
-  HomeClass.findHomeByid(homeId).then(([homeFoundbyID])=> {
-    const homeFound = homeFoundbyID[0];
+  HomeClass.findHomeByid(homeId).then(homeFound => {
     if(!homeFound){
       return res.redirect("/host/host-home-list");
     }
@@ -59,9 +58,7 @@ exports.postAddhome = (req, res, next) => {
   res.render('./host/homeAdded',{pageTitle:"home added succesfully",currentPage:"homeAdded"});
 };
 
-exports.postEditHome = (req, res, next) => {
-  console.log(req.body.photoUrl);
-  
+exports.postEditHome = (req, res, next) => {  
   /**
    * Now instead of array we will use of new class
    */
@@ -85,7 +82,7 @@ exports.postEditHome = (req, res, next) => {
 };
 
 exports.getHostHomes = (req, res, next) => {
-  HomeClass.fetchAll().then(([registeredHomes,fields]) => {
+  HomeClass.fetchAll().then(registeredHomes => {
     res.render('./host/host-home-list',{registeredHomes: registeredHomes, pageTitle: "Host home list",currentPage:"host-home-list"});
   });
   

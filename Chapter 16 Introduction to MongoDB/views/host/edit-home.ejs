@@ -5,7 +5,7 @@
   <main class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
     <h1 class="text-3xl font-bold mb-6 text-center text-gray-800"><%= editing ? "Edit" : "Register" %> Your Home on AirBnB</h1>
     <form action="/host/<%= editing ? "edit-home" : "add-home" %>" method="POST" class="max-w-md mx-auto">
-      <input name="id" value="<%= editing ? homeFound.id : '' %>" type="hidden">
+      <input name="id" value="<%= editing ? homeFound._id : '' %>" type="hidden">
       <input
         type="text"
         name="houseName"
