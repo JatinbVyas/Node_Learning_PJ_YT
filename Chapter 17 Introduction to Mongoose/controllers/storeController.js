@@ -33,19 +33,16 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getFavourite = (req, res, next) => {
-  Favourite.find().then((favouriteHomeIds) => {
-    favouriteHomeIds = favouriteHomeIds.map((fav) => fav.houseId.toString());
-    HomeClass.find().then((registeredHomes) => {
-      const favouriteHomes = registeredHomes.filter((home) =>
-        favouriteHomeIds.includes(home._id.toString())
-      );
+  Favourite.find()
+    .populate("houseId") //Here Populate is a function that populate auto all data from parent table based on id match
+    .then((favouriteHomeIds) => {
+      const favouriteHomes = favouriteHomeIds.map((fav) => fav.houseId);
       res.render("store/favourite-list", {
         favouriteHomes: favouriteHomes,
         pageTitle: "Favourite Homes",
         currentPage: "favourite-list",
       });
     });
-  });
 };
 
 exports.postAddToFavourities = (req, res, next) => {
