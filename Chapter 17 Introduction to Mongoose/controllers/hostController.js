@@ -51,7 +51,7 @@ exports.postAddhome = (req, res, next) => {
     description,
   });
 
-  home.saveHome().then(() => {
+  home.save().then(() => {
     console.log("Home saved successfully.");
   });
 
