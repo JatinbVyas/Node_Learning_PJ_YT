@@ -50,7 +50,7 @@ exports.getFavourite = (req, res, next) => {
 
 exports.postAddToFavourities = (req, res, next) => {
   console.log("you are in post favourite list", req.body, req.url);
-
+  // mongoose give fineOne also as an inbuilt function
   Favourite.findOne({ houseId: req.body.homeId })
     .then((fav) => {
       if (fav) {
@@ -74,7 +74,8 @@ exports.postRemoveToFavourities = (req, res, next) => {
     "you are in post to remove from favourite list",
     req.params.homeId
   );
-  FavouriteClass.removeFavouriteHomeByid(req.params.homeId)
+  //findOneAndDelete is also an inbuild fucntion of mongoose.
+  Favourite.findOneAndDelete({ houseId: req.params.homeId })
     .then(() => {
       console.log("Your home deleted from your favourite list.");
     })
