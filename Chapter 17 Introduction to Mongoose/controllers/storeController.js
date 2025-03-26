@@ -90,7 +90,7 @@ exports.postRemoveToFavourities = (req, res, next) => {
 
 exports.getHomesDetails = (req, res, next) => {
   const homeId = req.params.homeId;
-  HomeClass.findHomeByid(homeId).then((homesFoundById) => {
+  HomeClass.findById(homeId).then((homesFoundById) => {
     if (!homesFoundById) {
       console.log("Sorry! Your requested home is not found.");
       res.redirect("/store/home-list");
