@@ -1,5 +1,5 @@
 //Local module
-const FavouriteClass = require("../models/favourtieModel");
+const Favourite = require("../models/favourtieModel");
 const HomeClass = require("../models/homeModel");
 
 exports.Index = (req, res, next) => {
@@ -33,8 +33,8 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getFavourite = (req, res, next) => {
-  FavouriteClass.getFavourites().then((favouriteHomeIds) => {
-    favouriteHomeIds = favouriteHomeIds.map((fav) => fav.homeId);
+  Favourite.find().then((favouriteHomeIds) => {
+    favouriteHomeIds = favouriteHomeIds.map((fav) => fav.houseId.toString());
     HomeClass.find().then((registeredHomes) => {
       const favouriteHomes = registeredHomes.filter((home) =>
         favouriteHomeIds.includes(home._id.toString())
@@ -50,25 +50,23 @@ exports.getFavourite = (req, res, next) => {
 
 exports.postAddToFavourities = (req, res, next) => {
   console.log("you are in post favourite list", req.body, req.url);
-  FavouriteClass.findFavouriteHomeByid(req.body.homeId).then(
-    (homesFoundById) => {
-      if (homesFoundById) {
-        console.log("Home is alredy exist in favourite list.");
-        res.redirect("/store/favourite-list");
+
+  Favourite.findOne({ houseId: req.body.homeId })
+    .then((fav) => {
+      if (fav) {
+        console.log("Home already exist in Favourite list.");
+        return res.redirect("/store/favourite-list");
       } else {
-        FavouriteClass.addToFavourite(req.body.homeId)
-          .then(() => {
-            console.log("Your home added to your favourite list.");
-          })
-          .catch((error) => {
-            console.log("Error while add to favourite:: ", error, req.body);
-          })
-          .finally(() => {
-            res.redirect("/store/favourite-list");
-          });
+        fav = new Favourite({ houseId: req.body.homeId });
+        fav.save();
       }
-    }
-  );
+    })
+    .then((result) => {
+      return res.redirect("/store/favourite-list");
+    })
+    .catch((err) => {
+      console.log("Error while marking as fa");
+    });
 };
 
 exports.postRemoveToFavourities = (req, res, next) => {
