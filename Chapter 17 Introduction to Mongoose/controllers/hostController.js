@@ -51,6 +51,7 @@ exports.postAddhome = (req, res, next) => {
     description,
   });
 
+  //Here Mongoose give save as built in function and save data it self automaticall.
   home.save().then(() => {
     console.log("Home saved successfully.");
   });
