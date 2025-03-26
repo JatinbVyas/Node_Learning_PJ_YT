@@ -10,7 +10,6 @@ const storeRouter = require("./routes/storeRouter");
 const { houseRouter } = require("./routes/hosrRouter");
 const rootDir = require("./utils/pathUtil");
 const { NotFoundPage } = require("./controllers/404NoutFound");
-const { mongoConnect } = require("./utils/databaseUtil");
 const { default: mongoose } = require("mongoose");
 
 const appAirbnb = express();
