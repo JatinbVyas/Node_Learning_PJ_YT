@@ -1,23 +1,12 @@
-const { ObjectId } = require("mongodb");
+const mongoose = require("mongoose");
 
-module.exports = class FavouriteClass {
-  static addToFavourite(homeId) {
-    const db = getdb();
-    return db.collection("favourites").insertOne({ homeId: homeId });
-  }
+const favouriteSchema = mongoose.Schema({
+  houseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "homeclasses",
+    required: true,
+    unique: true,
+  },
+});
 
-  static getFavourites() {
-    const db = getdb();
-    return db.collection("favourites").find().toArray();
-  }
-
-  static removeFavouriteHomeByid(homeId) {
-    const db = getdb();
-    return db.collection("favourites").deleteOne({ homeId: homeId });
-  }
-
-  static findFavouriteHomeByid(homeId) {
-    const db = getdb();
-    return db.collection("favourites").find({ homeId: homeId }).next();
-  }
-};
+module.exports = mongoose.model("Favourite", favouriteSchema);
