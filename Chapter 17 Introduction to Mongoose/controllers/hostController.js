@@ -59,29 +59,31 @@ exports.postAddhome = (req, res, next) => {
 };
 
 exports.postEditHome = (req, res, next) => {
-  /**
-   * Now instead of array we will use of new class
-   */
-  const home = new HomeClass(
-    req.body.id,
-    req.body.houseName,
-    req.body.price,
-    req.body.location,
-    req.body.rating,
-    req.body.photoUrl,
-    req.body.description
-  );
+  const { id, houseName, price, location, rating, photoUrl, description } =
+    req.body;
+  HomeClass.findById(id)
+    .then((home) => {
+      home.houseName = houseName;
+      home.price = price;
+      home.location = location;
+      home.rating = rating;
+      home.photoUrl = photoUrl;
+      home.description = description;
 
-  home
-    .saveHome()
-    .then(() => {
-      console.log("Home updated successsfully.");
+      home
+        .save()
+        .then(() => {
+          console.log("Home updated successsfully.");
+        })
+        .catch((error) => {
+          console.log("There is an error while update home.", error);
+        });
+
+      res.redirect("/host/host-home-list");
     })
     .catch((error) => {
-      console.log("There is an error while update home.", error);
+      console.log("There is an error while finding home.", error);
     });
-
-  res.redirect("/host/host-home-list");
 };
 
 exports.getHostHomes = (req, res, next) => {
