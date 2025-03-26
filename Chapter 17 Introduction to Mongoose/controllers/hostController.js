@@ -101,7 +101,7 @@ exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;
   console.log("Home come to delete:: ", homeId);
 
-  HomeClass.deleteHomeByid(homeId)
+  HomeClass.findByIdAndDelete(homeId)
     .then(() => {
       res.redirect("/host/host-home-list");
     })
