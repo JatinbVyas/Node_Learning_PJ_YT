@@ -12,7 +12,7 @@ const homeSchema = mongoose.Schema({
 module.exports = mongoose.model("HomeClass", homeSchema);
 /**
  *     saveHome()
-     fetchAll()
+     find()
      findHomeByid(homeId)
      deleteHomeByid(homeId)
 

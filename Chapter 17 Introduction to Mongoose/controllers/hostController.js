@@ -16,14 +16,10 @@ exports.getEditHomes = (req, res, next) => {
   console.log("Value of variable is : ", homeId, editing);
 
   /**
-   * Earlier was used file system for store and retrive data.
-   * Now My SQL database system used to store and retrive data.
-   * And due to this technique is changed of fetching data.
-   * From findHomeByid column execute and send data here.
-   * After .then function applied to we received data in rows and fields in array format
-   * here by id specific one record is written and due to this areay[0] is written.
+   *Here findByid again we have in built function in mongoose that exactly working same as we earlier define
+   findHomeByid in monogo chappter.
    */
-  HomeClass.findHomeByid(homeId).then((homeFound) => {
+  HomeClass.findById(homeId).then((homeFound) => {
     if (!homeFound) {
       return res.redirect("/host/host-home-list");
     } else {
@@ -89,7 +85,8 @@ exports.postEditHome = (req, res, next) => {
 };
 
 exports.getHostHomes = (req, res, next) => {
-  HomeClass.fetchAll().then((registeredHomes) => {
+  //in mongoose we have find function that by default returns all records automatically.
+  HomeClass.find().then((registeredHomes) => {
     res.render("./host/host-home-list", {
       registeredHomes: registeredHomes,
       pageTitle: "Host home list",
