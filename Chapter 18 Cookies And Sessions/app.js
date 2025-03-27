@@ -11,6 +11,7 @@ const { houseRouter } = require("./routes/hosrRouter");
 const rootDir = require("./utils/pathUtil");
 const { NotFoundPage } = require("./controllers/404NoutFound");
 const { default: mongoose } = require("mongoose");
+const authRouter = require("./routes/authRouter");
 
 const appAirbnb = express();
 
@@ -37,6 +38,8 @@ appAirbnb.use(express.urlencoded());
 
 //Below sysntax use to call router that is created for sepration of code.
 appAirbnb.use(storeRouter);
+
+appAirbnb.use(authRouter);
 
 appAirbnb.use("/host", houseRouter);
 
